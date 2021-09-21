@@ -1,0 +1,46 @@
+server_type: fasthttp
+port: ":8088"
+
+# Definition of nodes
+#peer1: &peer1
+#  addr: peer0.org1.example.com:7051
+#  tls_key:
+#  tls_cert:
+#  override_hostname: peer0.org1.example.com
+#  root_certs:
+#    - /organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem
+#
+#peer2: &peer2
+#  addr: peer0.org2.example.com:9051
+#  tls_key:
+#  tls_cert:
+#  override_hostname:
+#  root_certs:
+#    - ./organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem
+
+orderer1: &orderer1
+#  addr: orderer.example.com:7050
+  addr: localhost:7050
+  tls_key:
+  tls_cert:
+  override_hostname: orderer.example.com
+  root_certs:
+    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+#peers:
+#  - *peer1
+#  - *peer2
+
+orderers:
+  - *orderer1
+
+channel: mychannel
+
+concurrency: 100
+
+account_num: 100000
+
+crypto:
+  msp_id: OrdererMSP
+  priv_key: ./test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/priv_sk
+  sign_cert: ./test-network/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/Admin@example.com-cert.pem
