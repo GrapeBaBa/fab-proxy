@@ -1,4 +1,4 @@
-module fab-proxy
+module github.com/Grapebaba/fab-proxy
 
 go 1.17
 

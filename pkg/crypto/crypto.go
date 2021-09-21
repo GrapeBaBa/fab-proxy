@@ -8,10 +8,11 @@ import (
 	"encoding/asn1"
 	"encoding/base64"
 	"encoding/pem"
-	"github.com/golang/protobuf/proto"
-	"github.com/hyperledger/fabric-protos-go/msp"
 	"io/ioutil"
 	"math/big"
+
+	"github.com/golang/protobuf/proto"
+	"github.com/hyperledger/fabric-protos-go/msp"
 
 	"github.com/hyperledger/fabric-protos-go/common"
 	"github.com/hyperledger/fabric/bccsp/utils"

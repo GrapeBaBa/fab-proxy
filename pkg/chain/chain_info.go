@@ -3,18 +3,19 @@ package chain
 import (
 	"context"
 	"encoding/hex"
-	"fab-proxy/pkg"
-	"fab-proxy/pkg/client"
-	"fab-proxy/pkg/config"
-	"fab-proxy/pkg/crypto"
 	"fmt"
+	"strconv"
+	"sync"
+	"sync/atomic"
+
+	"github.com/Grapebaba/fab-proxy/pkg"
+	"github.com/Grapebaba/fab-proxy/pkg/client"
+	"github.com/Grapebaba/fab-proxy/pkg/config"
+	"github.com/Grapebaba/fab-proxy/pkg/crypto"
 	"github.com/hyperledger/fabric-protos-go/common"
 	lutil "github.com/hyperledger/fabric/common/ledger/util"
 	"github.com/hyperledger/fabric/gossip/util"
 	"github.com/hyperledger/fabric/protoutil"
-	"strconv"
-	"sync"
-	"sync/atomic"
 )
 
 var serviceInstance *Service

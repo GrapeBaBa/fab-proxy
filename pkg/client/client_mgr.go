@@ -1,7 +1,7 @@
 package client
 
 import (
-	"fab-proxy/pkg/config"
+	"github.com/Grapebaba/fab-proxy/pkg/config"
 	"github.com/hyperledger/fabric/gossip/util"
 )
 

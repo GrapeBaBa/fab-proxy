@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
-	"fab-proxy/pkg/chain"
-	"fab-proxy/pkg/config"
-	"fab-proxy/server"
+	"github.com/Grapebaba/fab-proxy/pkg/chain"
+	"github.com/Grapebaba/fab-proxy/pkg/config"
+	"github.com/Grapebaba/fab-proxy/server"
 	"log"
 	"net/http"
 	"os"

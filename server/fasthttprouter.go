@@ -1,12 +1,13 @@
 package server
 
 import (
-	"fab-proxy/pkg"
-	"fab-proxy/pkg/chain"
 	"fmt"
+	"strconv"
+
+	"github.com/Grapebaba/fab-proxy/pkg"
+	"github.com/Grapebaba/fab-proxy/pkg/chain"
 	"github.com/fasthttp/router"
 	"github.com/valyala/fasthttp"
-	"strconv"
 )
 
 func NewFastHttpServer() *fasthttp.Server {
