@@ -19,10 +19,10 @@ services:
     container_name: orderer.example.com
     image: hyperledger/fabric-orderer:$IMAGE_TAG
     environment:
-      - ORDERER_GENERAL_PROFILE_ENABLED=true
+      - ORDERER_GENERAL_PROFILE_ENABLED=false
       - ORDERER_GENERAL_PROFILE_ADDRESS=0.0.0.0:6060
-#      - FABRIC_LOGGING_SPEC=error:cauthdsl=fatal
-      - FABRIC_LOGGING_SPEC=info:grpc=info
+      - FABRIC_LOGGING_SPEC=error:cauthdsl=fatal
+#      - FABRIC_LOGGING_SPEC=info:grpc=info
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
       - ORDERER_GENERAL_LISTENPORT=7050
       - ORDERER_GENERAL_GENESISMETHOD=file
@@ -40,6 +40,7 @@ services:
       - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
       - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
       - ORDERER_GENERAL_AUTHENTICATION_NOEXPIRATIONCHECKS=true
+      - ORDERER_GENERAL_KEEPALIVE_SERVERMININTERVAL=30s
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:

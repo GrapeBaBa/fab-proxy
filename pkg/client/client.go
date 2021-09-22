@@ -53,7 +53,11 @@ func CreateGRPCSClient(certPath string) (*comm.GRPCClient, error) {
 		return nil, err
 	}
 	config := comm.ClientConfig{}
-	config.KaOpts = comm.DefaultKeepaliveOptions
+	keepaliveOptions := comm.KeepaliveOptions{
+		ClientInterval: time.Duration(1) * time.Minute, // 1 min
+		ClientTimeout:  time.Duration(20) * time.Second, // 20 sec - gRPC default
+	}
+	config.KaOpts = keepaliveOptions
 	config.Timeout = 3 * time.Second
 	config.SecOpts = comm.SecureOptions{
 		UseTLS:            true,
