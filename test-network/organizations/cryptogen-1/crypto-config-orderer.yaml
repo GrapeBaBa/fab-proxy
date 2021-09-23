@@ -16,7 +16,12 @@ OrdererOrgs:
     # ---------------------------------------------------------------------------
     # "Specs" - See PeerOrgs for complete description
     # ---------------------------------------------------------------------------
+#    Specs:
+#      - Hostname: orderer
+#        SANS:
+#          - localhost
     Template:
-      Count: 4
+      Count: 1
       SANS:
         - localhost
+        # 各机器IP
