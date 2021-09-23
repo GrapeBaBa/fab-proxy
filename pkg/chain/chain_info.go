@@ -49,34 +49,34 @@ func newChainInfo(config *config.Config) *Service {
 	cryptoMgr, _ := crypto.New(config.Crypto.MSPID, config.Crypto.PrivKey, config.Crypto.SignCert)
 	service := &Service{Client: clientMgr, Crypto: cryptoMgr, Channel: config.Channel, sampleAccountNum: config.AccountNum}
 	ctx := context.Background()
-	for _, bClient := range clientMgr.GetBroadcastClients() {
-		bc := bClient
-		go func() {
-			for {
-				r, err := bc.Client.Recv()
-				if err != nil {
-					panic(err.Error())
-
-				}
-				if r.Status == common.Status_SUCCESS {
-					cb, ok := service.pendingTxes.Load(r.Info)
-					if !ok {
-						panic(r.Info)
-					}
-					cb.(chan struct{}) <- struct{}{}
-				} else {
-					panic(r.Status)
-				}
-
-				select {
-				case <-ctx.Done():
-					return
-				default:
-
-				}
-			}
-		}()
-	}
+	//for _, bClient := range clientMgr.GetBroadcastClients() {
+	//	bc := bClient
+	//	go func() {
+	//		for {
+	//			r, err := bc.Client.Recv()
+	//			if err != nil {
+	//				panic(err.Error())
+	//
+	//			}
+	//			if r.Status == common.Status_SUCCESS {
+	//				cb, ok := service.pendingTxes.Load(r.Info)
+	//				if !ok {
+	//					panic(r.Info)
+	//				}
+	//				cb.(chan struct{}) <- struct{}{}
+	//			} else {
+	//				panic(r.Status)
+	//			}
+	//
+	//			select {
+	//			case <-ctx.Done():
+	//				return
+	//			default:
+	//
+	//			}
+	//		}
+	//	}()
+	//}
 
 	dClient := clientMgr.GetDeliverClient()
 	seek, _ := client.CreateSignedDeliverNewestEnv(config.Channel, cryptoMgr)
@@ -217,19 +217,24 @@ func (ci *Service) SendTx(txContent string) pkg.TxInfo {
 		Signature: signature,
 	}
 
-	recvChan := make(chan struct{})
-	ci.pendingTxes.Store(txid, recvChan)
+	//recvChan := make(chan struct{})
+	//ci.pendingTxes.Store(txid, recvChan)
 
 	sender := ci.Client.GetBroadcastClient()
 	sender.Lock()
 	err := sender.Client.Send(envelope)
+	r, err := sender.Client.Recv()
 	sender.Unlock()
 
 	if err != nil {
 		panic(err)
 	}
 
-	<-recvChan
+	if r.Status != common.Status_SUCCESS {
+		panic(r.Info)
+	}
+
+	//<-recvChan
 	atomic.AddUint64(&ci.AcceptedTxTotal, 1)
 	return pkg.TxInfo{
 		TxId: txid,
