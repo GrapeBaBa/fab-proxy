@@ -22,10 +22,11 @@ func New(concurrency int, nodes []config.Node) *Client {
 			bClients = append(bClients, bc)
 		}
 
-		for i := 0; i < concurrency; i++ {
-			rbc, _ := CreateBroadcastClient(node.Addr, node.RootCerts[0], node.OverrideHostname)
-			rBClients = append(rBClients, rbc)
-		}
+	}
+
+	for i := 0; i < concurrency; i++ {
+		rbc, _ := CreateBroadcastClient(nodes[0].Addr, nodes[0].RootCerts[0], nodes[0].OverrideHostname)
+		rBClients = append(rBClients, rbc)
 	}
 
 	dClient, _ := CreateDeliverClient(nodes[0].Addr, nodes[0].RootCerts[0], nodes[0].OverrideHostname)
