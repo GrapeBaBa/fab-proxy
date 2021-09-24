@@ -344,3 +344,147 @@ func (ci *Service) InitAccounts() pkg.TxInfo {
 		TxId: txid,
 	}
 }
+
+func (ci *Service) CreateTx1(txKind string) string {
+	num := util.RandomInt(ci.sampleAccountNum)
+	srcAcc := fmt.Sprintf("account_%d", num)
+
+	if txKind == "query" {
+		nonce, _ := protoutil.CreateNonce()
+		creator, _ := ci.Crypto.Serialize()
+		txid := protoutil.ComputeTxID(nonce, creator)
+
+		txType := common.HeaderType_ENDORSER_TRANSACTION
+		chdr := &common.ChannelHeader{
+			Type:      int32(txType),
+			ChannelId: ci.Channel,
+			TxId:      txid,
+			Epoch:     uint64(0),
+			Extension: []byte("read"),
+		}
+
+		shdr := &common.SignatureHeader{
+			Creator: creator,
+			Nonce:   nonce,
+		}
+
+		payload := &common.Payload{
+			Header: &common.Header{
+				ChannelHeader:   protoutil.MarshalOrPanic(chdr),
+				SignatureHeader: protoutil.MarshalOrPanic(shdr),
+			},
+			Data: []byte(fmt.Sprintf("token,invoke,query,%s", srcAcc)),
+		}
+
+		payloadBytes, _ := protoutil.GetBytesPayload(payload)
+
+		signature, _ := ci.Crypto.Sign(payloadBytes)
+
+		envelope := &common.Envelope{
+			Payload:   payloadBytes,
+			Signature: signature,
+		}
+
+		envBytes := protoutil.MarshalOrPanic(envelope)
+
+		res := hex.EncodeToString(envBytes)
+		resCont := pkg.TokenTx{TxContent: res}
+		resContStr, _ := resCont.MarshalJSON()
+		return string(resContStr)
+	}
+
+	var num1 int
+	for {
+		num1 = util.RandomInt(ci.sampleAccountNum)
+		if num1 != num {
+			break
+		}
+	}
+
+	dstAcc := fmt.Sprintf("account_%d", num1)
+
+	nonce, _ := protoutil.CreateNonce()
+	creator, _ := ci.Crypto.Serialize()
+	txid := protoutil.ComputeTxID(nonce, creator)
+
+	txType := common.HeaderType_ENDORSER_TRANSACTION
+	chdr := &common.ChannelHeader{
+		Type:      int32(txType),
+		ChannelId: ci.Channel,
+		TxId:      txid,
+		Epoch:     uint64(0),
+	}
+
+	shdr := &common.SignatureHeader{
+		Creator: creator,
+		Nonce:   nonce,
+	}
+
+	payload := &common.Payload{
+		Header: &common.Header{
+			ChannelHeader:   protoutil.MarshalOrPanic(chdr),
+			SignatureHeader: protoutil.MarshalOrPanic(shdr),
+		},
+		Data: []byte(fmt.Sprintf("token,invoke,transfer,%s,%s,%d", srcAcc, dstAcc, 1)),
+	}
+
+	payloadBytes, _ := protoutil.GetBytesPayload(payload)
+
+	signature, _ := ci.Crypto.Sign(payloadBytes)
+
+	envelope := &common.Envelope{
+		Payload:   payloadBytes,
+		Signature: signature,
+	}
+
+	envBytes := protoutil.MarshalOrPanic(envelope)
+
+	res := hex.EncodeToString(envBytes)
+	resCont := pkg.TokenTx{TxContent: res}
+	resContStr, _ := resCont.MarshalJSON()
+	return string(resContStr)
+}
+
+func (ci *Service) SendTx1(txContent string) pkg.TxInfo {
+	envBytes, _ := hex.DecodeString(txContent)
+	envelope, _ := protoutil.UnmarshalEnvelope(envBytes)
+	//recvChan := make(chan struct{})
+	//ci.pendingTxes.Store(txid, recvChan)
+
+	sender := ci.Client.GetBroadcastClient()
+	sender.Lock()
+	err := sender.Client.Send(envelope)
+	r, err := sender.Client.Recv()
+	sender.Unlock()
+
+	if err != nil {
+		panic(err)
+	}
+
+	if r.Status != common.Status_SUCCESS {
+		panic(r.Info)
+	}
+
+	//<-recvChan
+	atomic.AddUint64(&ci.AcceptedTxTotal, 1)
+	return pkg.TxInfo{
+		TxId: r.Info,
+	}
+}
+
+func (ci *Service) SendTxQuery1(txContent string) string {
+	envBytes, _ := hex.DecodeString(txContent)
+	envelope, _ := protoutil.UnmarshalEnvelope(envBytes)
+
+	sender := ci.Client.GetRBroadcastClient()
+	sender.Lock()
+	err := sender.Client.Send(envelope)
+	r, err := sender.Client.Recv()
+	sender.Unlock()
+
+	if err != nil {
+		panic(err)
+	}
+
+	return r.Info
+}

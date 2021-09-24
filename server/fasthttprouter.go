@@ -124,6 +124,40 @@ func NewFastHttpServer() *fasthttp.Server {
 		ctx.SetContentType("application/json; charset=utf-8")
 		_, _ = ctx.WriteString(string(resStr))
 	})
+	rg.POST("/tx/invoke1", func(ctx *fasthttp.RequestCtx) {
+		content := ctx.PostBody()
+		tokenTx := &pkg.TokenTx{}
+		err := tokenTx.UnmarshalJSON(content)
+		if err != nil {
+			panic(err.Error())
+		}
+
+		resp := chain.GetChainInfo().SendTx1(tokenTx.TxContent)
+		resStr, err := resp.MarshalJSON()
+		if err != nil {
+			panic(err.Error())
+		}
+		ctx.SetContentType("application/json; charset=utf-8")
+		_, _ = ctx.WriteString(string(resStr))
+	})
+	rg.POST("/tx/query1", func(ctx *fasthttp.RequestCtx) {
+		content := ctx.PostBody()
+		tokenTx := &pkg.TokenTx{}
+		err := tokenTx.UnmarshalJSON(content)
+		if err != nil {
+			panic(err.Error())
+		}
+
+		resp := chain.GetChainInfo().SendTxQuery1(tokenTx.TxContent)
+		ctx.SetContentType("application/json; charset=utf-8")
+		_, _ = ctx.WriteString(resp)
+	})
+	rg.GET("/tx1", func(ctx *fasthttp.RequestCtx) {
+		typeStr := ctx.QueryArgs().Peek("type")
+		content := chain.GetChainInfo().CreateTx1(string(typeStr))
+		ctx.SetContentType("application/json; charset=utf-8")
+		_, _ = ctx.WriteString(content)
+	})
 	srv := &fasthttp.Server{Handler: r.Handler}
 
 	return srv

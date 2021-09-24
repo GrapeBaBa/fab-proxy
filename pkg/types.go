@@ -63,3 +63,13 @@ type QueryTokenContent struct {
 	TxContent QueryTokenTx `json:"txcontent"`
 }
 
+//easyjson:json
+type TokenTx struct {
+	TxContent string `json:"txcontent"`
+}
+
+//easyjson:json
+type TokenContent struct {
+	TxContent TokenTx `json:"txcontent"`
+}
+

@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson6601e8cdDecodeFabProxyPkg(in *jlexer.Lexer, out *TxInfo) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg(in *jlexer.Lexer, out *TxInfo) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -48,7 +48,7 @@ func easyjson6601e8cdDecodeFabProxyPkg(in *jlexer.Lexer, out *TxInfo) {
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg(out *jwriter.Writer, in TxInfo) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg(out *jwriter.Writer, in TxInfo) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -63,27 +63,159 @@ func easyjson6601e8cdEncodeFabProxyPkg(out *jwriter.Writer, in TxInfo) {
 // MarshalJSON supports json.Marshaler interface
 func (v TxInfo) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v TxInfo) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *TxInfo) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *TxInfo) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg1(in *jlexer.Lexer, out *QueryTokenTx) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg1(in *jlexer.Lexer, out *TokenTx) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "txcontent":
+			out.TxContent = string(in.String())
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg1(out *jwriter.Writer, in TokenTx) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"txcontent\":"
+		out.RawString(prefix[1:])
+		out.String(string(in.TxContent))
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v TokenTx) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg1(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v TokenTx) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg1(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *TokenTx) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg1(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *TokenTx) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg1(l, v)
+}
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg2(in *jlexer.Lexer, out *TokenContent) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		case "txcontent":
+			(out.TxContent).UnmarshalEasyJSON(in)
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg2(out *jwriter.Writer, in TokenContent) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	{
+		const prefix string = ",\"txcontent\":"
+		out.RawString(prefix[1:])
+		(in.TxContent).MarshalEasyJSON(out)
+	}
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v TokenContent) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg2(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v TokenContent) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg2(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *TokenContent) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg2(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *TokenContent) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg2(l, v)
+}
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg3(in *jlexer.Lexer, out *QueryTokenTx) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -120,7 +252,7 @@ func easyjson6601e8cdDecodeFabProxyPkg1(in *jlexer.Lexer, out *QueryTokenTx) {
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg1(out *jwriter.Writer, in QueryTokenTx) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg3(out *jwriter.Writer, in QueryTokenTx) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -150,27 +282,27 @@ func easyjson6601e8cdEncodeFabProxyPkg1(out *jwriter.Writer, in QueryTokenTx) {
 // MarshalJSON supports json.Marshaler interface
 func (v QueryTokenTx) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg1(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg3(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v QueryTokenTx) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg1(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg3(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *QueryTokenTx) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg1(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg3(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *QueryTokenTx) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg1(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg3(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg2(in *jlexer.Lexer, out *QueryTokenContent) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg4(in *jlexer.Lexer, out *QueryTokenContent) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -201,7 +333,7 @@ func easyjson6601e8cdDecodeFabProxyPkg2(in *jlexer.Lexer, out *QueryTokenContent
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg2(out *jwriter.Writer, in QueryTokenContent) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg4(out *jwriter.Writer, in QueryTokenContent) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -216,27 +348,27 @@ func easyjson6601e8cdEncodeFabProxyPkg2(out *jwriter.Writer, in QueryTokenConten
 // MarshalJSON supports json.Marshaler interface
 func (v QueryTokenContent) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg2(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg4(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v QueryTokenContent) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg2(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg4(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *QueryTokenContent) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg2(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg4(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *QueryTokenContent) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg2(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg4(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg3(in *jlexer.Lexer, out *NodeCount) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg5(in *jlexer.Lexer, out *NodeCount) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -267,7 +399,7 @@ func easyjson6601e8cdDecodeFabProxyPkg3(in *jlexer.Lexer, out *NodeCount) {
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg3(out *jwriter.Writer, in NodeCount) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg5(out *jwriter.Writer, in NodeCount) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -282,27 +414,27 @@ func easyjson6601e8cdEncodeFabProxyPkg3(out *jwriter.Writer, in NodeCount) {
 // MarshalJSON supports json.Marshaler interface
 func (v NodeCount) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg3(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg5(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v NodeCount) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg3(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg5(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *NodeCount) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg3(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg5(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *NodeCount) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg3(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg5(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg4(in *jlexer.Lexer, out *InvokeTokenTx) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg6(in *jlexer.Lexer, out *InvokeTokenTx) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -343,7 +475,7 @@ func easyjson6601e8cdDecodeFabProxyPkg4(in *jlexer.Lexer, out *InvokeTokenTx) {
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg4(out *jwriter.Writer, in InvokeTokenTx) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg6(out *jwriter.Writer, in InvokeTokenTx) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -383,27 +515,27 @@ func easyjson6601e8cdEncodeFabProxyPkg4(out *jwriter.Writer, in InvokeTokenTx) {
 // MarshalJSON supports json.Marshaler interface
 func (v InvokeTokenTx) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg4(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg6(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v InvokeTokenTx) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg4(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg6(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *InvokeTokenTx) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg4(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg6(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *InvokeTokenTx) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg4(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg6(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg5(in *jlexer.Lexer, out *InvokeTokenContent) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg7(in *jlexer.Lexer, out *InvokeTokenContent) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -434,7 +566,7 @@ func easyjson6601e8cdDecodeFabProxyPkg5(in *jlexer.Lexer, out *InvokeTokenConten
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg5(out *jwriter.Writer, in InvokeTokenContent) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg7(out *jwriter.Writer, in InvokeTokenContent) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -449,27 +581,27 @@ func easyjson6601e8cdEncodeFabProxyPkg5(out *jwriter.Writer, in InvokeTokenConte
 // MarshalJSON supports json.Marshaler interface
 func (v InvokeTokenContent) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg5(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg7(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v InvokeTokenContent) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg5(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg7(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *InvokeTokenContent) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg5(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg7(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *InvokeTokenContent) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg5(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg7(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg6(in *jlexer.Lexer, out *ConfirmedTxCount) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg8(in *jlexer.Lexer, out *ConfirmedTxCount) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -500,7 +632,7 @@ func easyjson6601e8cdDecodeFabProxyPkg6(in *jlexer.Lexer, out *ConfirmedTxCount)
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg6(out *jwriter.Writer, in ConfirmedTxCount) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg8(out *jwriter.Writer, in ConfirmedTxCount) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -515,27 +647,27 @@ func easyjson6601e8cdEncodeFabProxyPkg6(out *jwriter.Writer, in ConfirmedTxCount
 // MarshalJSON supports json.Marshaler interface
 func (v ConfirmedTxCount) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg6(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg8(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v ConfirmedTxCount) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg6(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg8(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *ConfirmedTxCount) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg6(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg8(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *ConfirmedTxCount) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg6(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg8(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg7(in *jlexer.Lexer, out *BlockInfo) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg9(in *jlexer.Lexer, out *BlockInfo) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -597,7 +729,7 @@ func easyjson6601e8cdDecodeFabProxyPkg7(in *jlexer.Lexer, out *BlockInfo) {
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg7(out *jwriter.Writer, in BlockInfo) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg9(out *jwriter.Writer, in BlockInfo) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -648,27 +780,27 @@ func easyjson6601e8cdEncodeFabProxyPkg7(out *jwriter.Writer, in BlockInfo) {
 // MarshalJSON supports json.Marshaler interface
 func (v BlockInfo) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg7(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg9(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v BlockInfo) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg7(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg9(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *BlockInfo) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg7(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg9(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *BlockInfo) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg7(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg9(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg8(in *jlexer.Lexer, out *BlockHeight) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg10(in *jlexer.Lexer, out *BlockHeight) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -699,7 +831,7 @@ func easyjson6601e8cdDecodeFabProxyPkg8(in *jlexer.Lexer, out *BlockHeight) {
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg8(out *jwriter.Writer, in BlockHeight) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg10(out *jwriter.Writer, in BlockHeight) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -714,27 +846,27 @@ func easyjson6601e8cdEncodeFabProxyPkg8(out *jwriter.Writer, in BlockHeight) {
 // MarshalJSON supports json.Marshaler interface
 func (v BlockHeight) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg8(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg10(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v BlockHeight) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg8(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg10(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *BlockHeight) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg8(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg10(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *BlockHeight) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg8(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg10(l, v)
 }
-func easyjson6601e8cdDecodeFabProxyPkg9(in *jlexer.Lexer, out *AcceptedTxCount) {
+func easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg11(in *jlexer.Lexer, out *AcceptedTxCount) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -765,7 +897,7 @@ func easyjson6601e8cdDecodeFabProxyPkg9(in *jlexer.Lexer, out *AcceptedTxCount) 
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeFabProxyPkg9(out *jwriter.Writer, in AcceptedTxCount) {
+func easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg11(out *jwriter.Writer, in AcceptedTxCount) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -780,23 +912,23 @@ func easyjson6601e8cdEncodeFabProxyPkg9(out *jwriter.Writer, in AcceptedTxCount)
 // MarshalJSON supports json.Marshaler interface
 func (v AcceptedTxCount) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeFabProxyPkg9(&w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg11(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v AcceptedTxCount) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeFabProxyPkg9(w, v)
+	easyjson6601e8cdEncodeGithubComGrapebabaFabProxyPkg11(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *AcceptedTxCount) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeFabProxyPkg9(&r, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg11(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *AcceptedTxCount) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeFabProxyPkg9(l, v)
+	easyjson6601e8cdDecodeGithubComGrapebabaFabProxyPkg11(l, v)
 }
