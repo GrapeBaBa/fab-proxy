@@ -46,6 +46,18 @@ Organizations:
             - orderer1.example.com:7050
             - orderer2.example.com:7050
             - orderer3.example.com:7050
+#            - orderer4.example.com:7050
+#            - orderer5.example.com:7050
+#            - orderer6.example.com:7050
+#            - orderer7.example.com:7050
+#            - orderer8.example.com:7050
+#            - orderer9.example.com:7050
+#            - orderer10.example.com:7050
+#            - orderer11.example.com:7050
+#            - orderer12.example.com:7050
+#            - orderer13.example.com:7050
+#            - orderer14.example.com:7050
+#            - orderer15.example.com:7050
 
     - &Org1
         # DefaultOrg defines the organization which is used in the sampleconfig
@@ -216,6 +228,18 @@ Orderer: &OrdererDefaults
         - orderer1.example.com:7050
         - orderer2.example.com:7050
         - orderer3.example.com:7050
+#        - orderer4.example.com:7050
+#        - orderer5.example.com:7050
+#        - orderer6.example.com:7050
+#        - orderer7.example.com:7050
+#        - orderer8.example.com:7050
+#        - orderer9.example.com:7050
+#        - orderer10.example.com:7050
+#        - orderer11.example.com:7050
+#        - orderer12.example.com:7050
+#        - orderer13.example.com:7050
+#        - orderer14.example.com:7050
+#        - orderer15.example.com:7050
 
     EtcdRaft:
         Consenters:
@@ -238,6 +262,66 @@ Orderer: &OrdererDefaults
           Port: 7050
           ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
           ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
+#
+#        - Host: orderer4.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
+#
+#        - Host: orderer5.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
+#
+#        - Host: orderer6.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer6.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer6.example.com/tls/server.crt
+#
+#        - Host: orderer7.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer7.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer7.example.com/tls/server.crt
+#
+#        - Host: orderer8.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer8.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer8.example.com/tls/server.crt
+#
+#        - Host: orderer9.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer9.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer9.example.com/tls/server.crt
+#
+#        - Host: orderer10.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer10.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer10.example.com/tls/server.crt
+#
+#        - Host: orderer11.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer11.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer11.example.com/tls/server.crt
+#
+#        - Host: orderer12.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer12.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer12.example.com/tls/server.crt
+#
+#        - Host: orderer13.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer13.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer13.example.com/tls/server.crt
+#
+#        - Host: orderer14.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer14.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer14.example.com/tls/server.crt
+#
+#        - Host: orderer15.example.com
+#          Port: 7050
+#          ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer15.example.com/tls/server.crt
+#          ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer15.example.com/tls/server.crt
 
 
         # Options to be specified for all the etcd/raft nodes. The values here

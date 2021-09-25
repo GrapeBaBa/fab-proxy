@@ -20,7 +20,7 @@ port: ":8088"
 
 orderer1: &orderer1
 #  addr: orderer.example.com:7050
-  addr: localhost:7050
+  addr: 192.168.2.30:7050
   tls_key:
   tls_cert:
   override_hostname: orderer0.example.com
@@ -29,12 +29,138 @@ orderer1: &orderer1
 
 orderer2: &orderer2
   #  addr: orderer.example.com:7050
-  addr: localhost:9050
+  addr: localhost:7050
   tls_key:
   tls_cert:
   override_hostname: orderer1.example.com
   root_certs:
     - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+orderer3: &orderer3
+  #  addr: orderer.example.com:7050
+  addr: localhost:7050
+  tls_key:
+  tls_cert:
+  override_hostname: orderer2.example.com
+  root_certs:
+    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+orderer4: &orderer4
+  #  addr: orderer.example.com:7050
+  addr: localhost:7050
+  tls_key:
+  tls_cert:
+  override_hostname: orderer3.example.com
+  root_certs:
+    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+
+#orderer5: &orderer5
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer4.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer6: &orderer6
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer5.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer7: &orderer7
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer6.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer8: &orderer8
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer7.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer9: &orderer9
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer8.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer10: &orderer10
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer9.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer11: &orderer11
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer10.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer12: &orderer12
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer11.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer13: &orderer13
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer12.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer14: &orderer14
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer13.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer15: &orderer15
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer14.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
+#
+#orderer16: &orderer16
+#  #  addr: orderer.example.com:7050
+#  addr: localhost:7050
+#  tls_key:
+#  tls_cert:
+#  override_hostname: orderer15.example.com
+#  root_certs:
+#    - ./test-network/organizations/ordererOrganizations/example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 
 
 #peers:
@@ -43,7 +169,21 @@ orderer2: &orderer2
 
 orderers:
   - *orderer1
-#  - *orderer2
+  - *orderer2
+  - *orderer3
+  - *orderer4
+#  - *orderer5
+#  - *orderer6
+#  - *orderer7
+#  - *orderer8
+#  - *orderer9
+#  - *orderer10
+#  - *orderer11
+#  - *orderer12
+#  - *orderer13
+#  - *orderer14
+#  - *orderer15
+#  - *orderer16
 
 channel: mychannel
 

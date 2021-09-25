@@ -256,6 +256,15 @@ function createConsortium() {
   fi
 }
 
+function networkInit() {
+  checkPrereqs
+  # generate artifacts if they don't exist
+  if [ ! -d "organizations/peerOrganizations" ]; then
+    createOrgs
+    createConsortium
+  fi
+}
+
 # After we create the org crypto material and the system channel genesis block,
 # we can now bring up the peers and ordering service. By default, the base
 # file for creating the network is "docker-compose-test-net.yaml" in the ``docker``
@@ -264,12 +273,12 @@ function createConsortium() {
 
 # Bring up the peer and orderer nodes using docker compose.
 function networkUp() {
-  checkPrereqs
-  # generate artifacts if they don't exist
-  if [ ! -d "organizations/peerOrganizations" ]; then
-    createOrgs
-    createConsortium
-  fi
+#  checkPrereqs
+#  # generate artifacts if they don't exist
+#  if [ ! -d "organizations/peerOrganizations" ]; then
+#    createOrgs
+#    createConsortium
+#  fi
 
   COMPOSE_FILES="-f ${COMPOSE_FILE_BASE}"
 
@@ -508,6 +517,8 @@ elif [ "$MODE" == "restart" ]; then
   infoln "Restarting network"
 elif [ "$MODE" == "deployCC" ]; then
   infoln "deploying chaincode on channel '${CHANNEL_NAME}'"
+elif [ "$MODE" == "init" ]; then
+  infoln "Init organizations"
 else
   printHelp
   exit 1
@@ -521,6 +532,8 @@ elif [ "${MODE}" == "deployCC" ]; then
   deployCC
 elif [ "${MODE}" == "down" ]; then
   networkDown
+elif [ "${MODE}" == "init" ]; then
+  networkInit
 else
   printHelp
   exit 1

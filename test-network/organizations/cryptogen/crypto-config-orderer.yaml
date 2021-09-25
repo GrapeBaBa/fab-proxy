@@ -17,6 +17,6 @@ OrdererOrgs:
     # "Specs" - See PeerOrgs for complete description
     # ---------------------------------------------------------------------------
     Template:
-      Count: 4
+      Count: 4  #16
       SANS:
         - localhost
