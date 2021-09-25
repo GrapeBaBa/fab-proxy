@@ -91,6 +91,17 @@ func newChainInfo(config *config.Config) *Service {
 				fmt.Println(err.Error())
 			}
 			block := r.GetBlock()
+			//count := len(block.GetMetadata().GetMetadata())
+			//var createTime uint64
+			//if count<4{
+			//	fmt.Println(block.Header.Number)
+			//	fmt.Println(len(block.Data.Data))
+			//	createTime=uint64(time.Now().UnixNano())
+			//}else {
+			//	createTimeBytes := block.GetMetadata().GetMetadata()[common.BlockMetadataIndex_ORDERER]
+			//	createTime, _, _ = lutil.DecodeOrderPreservingVarUint64(createTimeBytes)
+			//}
+
 			createTimeBytes := block.GetMetadata().GetMetadata()[common.BlockMetadataIndex_ORDERER]
 			createTime, _, _ := lutil.DecodeOrderPreservingVarUint64(createTimeBytes)
 			//fmt.Println(block.Header.Number)

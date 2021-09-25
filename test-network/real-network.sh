@@ -476,6 +476,10 @@ while [[ $# -ge 1 ]] ; do
     VERBOSE=true
     shift
     ;;
+  -p )
+    COMPOSE_FILE_BASE="$2"
+    shift
+    ;;
   * )
     errorln "Unknown flag: $key"
     printHelp

@@ -70,8 +70,8 @@ func CreateGRPCSClient(certPath string) (*comm.GRPCClient, error) {
 	if err != nil {
 		return nil, errors.Wrapf(err, "error connecting to %s", "ds")
 	}
-	grpcClient.SetMaxRecvMsgSize(64 * 1024 * 1024)
-	grpcClient.SetMaxRecvMsgSize(64 * 1024 * 1024)
+	grpcClient.SetMaxRecvMsgSize(100 * 1024 * 1024)
+	grpcClient.SetMaxSendMsgSize(100 * 1024 * 1024)
 	return grpcClient, nil
 }
 
